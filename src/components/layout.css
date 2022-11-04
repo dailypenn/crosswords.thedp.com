@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 :root {
+  --bs-body-font-family: 'Roboto Condensed';
   --border-radius: 4px;
   --color-text: #333;
   --color-primary: #7026b9;
@@ -37,8 +39,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: var(--color-text);
-  font-family: sans-serif;
-  font-family: var(--font-sans);
+  font-family: var(--bs-body-font-family);
   font-weight: normal;
   margin: 0;
   word-wrap: break-word;
