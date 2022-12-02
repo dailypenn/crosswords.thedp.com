@@ -41,14 +41,7 @@ const Header = ({ siteTitle }) => {
                 Explore
               </Offcanvas.Title>
             </Offcanvas.Header>
-            <Offcanvas.Body>
-              Under construction
-              {/* <Nav className="justify-content-end flex-grow-1 pe-3">
-                {otherPubs.map(p => (
-                  <Nav.Link>{p}</Nav.Link>
-                ))}
-              </Nav> */}
-            </Offcanvas.Body>
+            <Offcanvas.Body>Under construction</Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
