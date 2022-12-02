@@ -11,7 +11,7 @@ import NavDropdown from "react-bootstrap/NavDropdown"
 import Offcanvas from "react-bootstrap/Offcanvas"
 
 const Header = ({ siteTitle }) => {
-  const otherPubs = ["34th Street", "Under the Button"]
+  // const otherPubs = ["34th Street", "Under the Button"]
 
   return (
     // <h3>
@@ -42,40 +42,16 @@ const Header = ({ siteTitle }) => {
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              <Nav className="justify-content-end flex-grow-1 pe-3">
+              Under construction
+              {/* <Nav className="justify-content-end flex-grow-1 pe-3">
                 {otherPubs.map(p => (
                   <Nav.Link>{p}</Nav.Link>
                 ))}
-              </Nav>
+              </Nav> */}
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
-      {/* <nav className="navbar p-4 justify-content-start">
-        <Button
-          onClick={() => setOpen(!open)}
-          aria-controls="example-collapse-text"
-          aria-expanded={open}
-        >
-          click
-        </Button>
-        <Collapse in={open}>
-          <div id="example-collapse-text">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-            labore wes anderson cred nesciunt sapiente ea proident.
-          </div>
-        </Collapse>
-        <div className="pt-1 ps-4">
-          <img
-            alt="Gatsby logo"
-            width={40}
-            style={{ margin: 0 }}
-            src={dpLogo}
-          />
-          <span className="fs-5 ms-2">CROSSWORDS</span>
-        </div>
-      </nav> */}
     </header>
   )
 }
