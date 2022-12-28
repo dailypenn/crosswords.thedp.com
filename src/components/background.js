@@ -4,8 +4,8 @@ import s from "styled-components"
 const Hero = s.div`
   text-align: center;
   color: white;
-  padding-top: 3rem;
-  padding-bottom: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   width: 100vw;
   
   animation: animateBg 5s linear infinite;
@@ -17,8 +17,12 @@ const Hero = s.div`
   }
 `
 
-const Background = () => {
-  return <Hero></Hero>
+const Background = ({ children }) => {
+  return (
+    <Hero>
+      <div className="d-flex justify-content-center">{children}</div>
+    </Hero>
+  )
 }
 
 export default Background
