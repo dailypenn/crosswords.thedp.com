@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import Clues from '../components/Clues'
 import Keyboard from '../components/Keyboard';
 import Puzzle from '../components/Puzzle';
+import Background from "../components/background"
 import useLocalStorage from '../hooks/useLocalStorage';
 
 import { CELL_SIZE } from '../components/Cell';
@@ -18,6 +19,7 @@ import {
   reducer,
 } from '../reducer';
 import { colors } from '../css';
+import Layout from '../components/layout';
 
 // Stop props from bleeding through to DOM
 const Empty = styled.div``;
@@ -25,10 +27,9 @@ const Empty = styled.div``;
 const PuzzleContainer = styled(({ width, ...props }) => <Empty {...props} />)`
   display: grid;
   grid-template-columns: auto;
-  grid-column-gap: 10px;
 
   @media (min-width: 1200px) {
-    grid-template-columns: calc(${(props) => props.width} * ${CELL_SIZE}px) auto auto;
+    grid-template-columns: calc(${(props) => props.width} * ${CELL_SIZE}px + 20px) auto auto;
   }
 
   @media print {
@@ -74,12 +75,23 @@ const Container = styled.div`
 const Header = styled.h2`
   width: 100%;
   margin: 0;
+  padding-bottom: 20px;
 `;
 
 const Byline = styled.h5`
   margin: 0;
   margin-bottom: 0.5rem;
 `;
+
+const PuzzleTitle = styled.span`
+  font-size: 2rem;
+  color: #D72E25;
+`
+
+const PuzzleAuthor = styled.span`
+  font-size: 1.5rem;
+  color: #666666;
+`
 
 const reader = new FileReader();
 
@@ -348,51 +360,50 @@ const Crossword = () => {
   }, [getCellByClue, getCoord, grid, selected.x, selected.y]);
 
   return (
-    <Container onKeyDown={onKeyDown} tabIndex={0} >
-      <Header>
-        Crossword
-      </Header>
-      <Byline>
-        {byline}
-      </Byline>
-      {!grid && (
-        <>
-          <File onChange={readPuz} type="file" />
-          <FileContainer
-            onDragEnter={onDragEnter}
-            onDragLeave={onDragLeave}
-            onDragOver={onDragOver}
-            onDrop={onDrop}
-            ref={containerRef}
-          >
-            Drag & Drop .puz File Here
-          </FileContainer>
-        </>
-      )}
-      {/* </> For Github syntax highlighting */}
-      {grid && (
-        <>
-          <PuzzleContainer width={width}>
-            <Puzzle
-              grid={grid}
-              height={height}
-              onSelect={onSelect}
-              width={width}
-            />
-            <Clues
-              acrossClues={state.acrossClues}
-              clueIndex={state.clueIndex}
-              downClues={state.downClues}
-              height={height * CELL_SIZE}
-              mode={mode}
-              onClick={onClueClick}
-              width={width * CELL_SIZE}
-            />
-          </PuzzleContainer>
-          <Keyboard onClick={onKeyboardClick} />
-        </>
-      )}
-    </Container>
+    <Layout>
+      <Container onKeyDown={onKeyDown} tabIndex={0} >
+        <Header>
+          <PuzzleTitle>{title} </PuzzleTitle> <PuzzleAuthor>{author}</PuzzleAuthor>
+        </Header>
+        {!grid && (
+          <>
+            <File onChange={readPuz} type="file" />
+            <FileContainer
+              onDragEnter={onDragEnter}
+              onDragLeave={onDragLeave}
+              onDragOver={onDragOver}
+              onDrop={onDrop}
+              ref={containerRef}
+            >
+              Drag & Drop .puz File Here
+            </FileContainer>
+          </>
+        )}
+        {/* </> For Github syntax highlighting */}
+        {grid && (
+          <>
+            <PuzzleContainer width={width}>
+              <Puzzle
+                grid={grid}
+                height={height}
+                onSelect={onSelect}
+                width={width}
+              />
+              <Clues
+                acrossClues={state.acrossClues}
+                clueIndex={state.clueIndex}
+                downClues={state.downClues}
+                height={height * CELL_SIZE}
+                mode={mode}
+                onClick={onClueClick}
+                width={width * CELL_SIZE}
+              />
+            </PuzzleContainer>
+            <Keyboard onClick={onKeyboardClick} />
+          </>
+        )}
+      </Container>
+    </Layout>
   );
 };
 

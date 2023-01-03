@@ -8,7 +8,9 @@
     "@dylanarmstrong/puz": "^0.3.3",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
+    "fontsource-raleway": "^4.0.0",
     "gatsby": "^4.24.5",
+    "gatsby-cli": "^5.3.1",
     "gatsby-plugin-image": "^2.24.0",
     "gatsby-plugin-manifest": "^4.24.0",
     "gatsby-plugin-sharp": "^4.24.0",
@@ -21,7 +23,8 @@
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.1.0",
     "react-konva": "^18.2.3",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
     "prettier": "^2.7.1"

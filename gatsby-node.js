@@ -7,3 +7,13 @@ exports.createPages = async ({ actions }) => {
     defer: true,
   })
 }
+
+exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
+  const config = getConfig()
+  const webpack = require('webpack')
+  config.plugins[0] = new webpack.IgnorePlugin({
+    resourceRegExp: /canvas|jsdom/,
+    contextRegExp: /konva/,
+  })
+  actions.replaceWebpackConfig(config)
+}

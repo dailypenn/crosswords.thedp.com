@@ -24,15 +24,18 @@ const ClueContainer = styled.div`
   @media (min-width: 992px) {
     display: grid;
     grid-template-columns: auto auto;
-    grid-column-gap: 10px;
+    grid-column-gap: 20px;
   }
 `;
 
 const Title = styled.strong`
-  height: 20px;
+  height: 40px;
   grid-row: 1/1;
   background-color: ${colors.white};
-  border-bottom: 2px solid ${colors.black};
+  border-bottom: 2px solid #D72E25;
+  padding-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #D72E25;
 
   ${(props) => props.one && css`
     grid-column: 1/1;
@@ -61,6 +64,8 @@ const Active = styled.div`
 const Clues = ({ acrossClues, clueIndex, downClues, height, mode, onClick, width }) => {
   const acrossRef = useRef(null);
   const downRef = useRef(null);
+  const acrossTemp = useRef("");
+  const downTemp = useRef("");
 
   useEffect(() => {
     if (acrossRef.current && typeof acrossRef.current.scrollIntoViewIfNeeded === 'function') {
@@ -72,9 +77,29 @@ const Clues = ({ acrossClues, clueIndex, downClues, height, mode, onClick, width
     }
   }, [clueIndex]);
 
+  function getUnique(arr, index) {
+
+    const unique = arr
+          .map(e => e[index])
+  
+          // store the keys of the unique objects
+          .map((e, i, final) => final.indexOf(e) === i && i)
+    
+          // eliminate the dead keys & store unique objects
+        .filter(e => arr[e]).map(e => arr[e]);      
+  
+      return unique;
+  }
+
+
   const { clue: activeClue } = (mode === 'across' ? acrossClues : downClues)
     .find(({ index }) => index === clueIndex) || { clue: null };
+  
 
+  // acrossClues = getUnique(acrossClues, "index");
+  // downClues = getUnique(downClues, "index");
+  acrossClues = getUnique(acrossClues, "clue");
+  downClues = getUnique(downClues, "clue");
   return (
     <>
       <Active width={width}>
@@ -90,19 +115,23 @@ const Clues = ({ acrossClues, clueIndex, downClues, height, mode, onClick, width
             <Title one>Across</Title>
             <ClueList height={height}>
               {acrossClues.map(({ clue, index }, i) => {
-                const isHighlighted = clueIndex === index;
-                return (
-                  <Clue
-                    clue={clue}
-                    index={index}
-                    innerRef={isHighlighted ? acrossRef : null}
-                    isHighlighted={isHighlighted}
-                    isMode={mode === 'across'}
-                    key={`clue-across-${i}`}
-                    mode="across"
-                    onClick={onClick}
-                  />
-                );
+                  const isHighlighted = clueIndex === index;
+                  // if (acrossTemp.current == clue) {
+                  //   return;
+                  // }
+                  // acrossTemp.current = clue;
+                  return (
+                    <Clue
+                      clue={clue}
+                      index={index}
+                      innerRef={isHighlighted ? acrossRef : null}
+                      isHighlighted={isHighlighted}
+                      isMode={mode === 'across'}
+                      key={`clue-across-${i}`}
+                      mode="across"
+                      onClick={onClick}
+                    />
+                  );
               })}
             </ClueList>
           </>
@@ -113,19 +142,26 @@ const Clues = ({ acrossClues, clueIndex, downClues, height, mode, onClick, width
             <Title two>Down</Title>
             <ClueList height={height}>
               {downClues.map(({ clue, index }, i) => {
-                const isHighlighted = clueIndex === index;
-                return (
-                  <Clue
-                    clue={clue}
-                    index={index}
-                    innerRef={isHighlighted ? downRef : null}
-                    isHighlighted={isHighlighted}
-                    isMode={mode === 'down'}
-                    key={`clue-down-${i}`}
-                    mode="down"
-                    onClick={onClick}
-                  />
-                );
+                  const isHighlighted = clueIndex === index;
+                  if (isHighlighted) {
+                    console.log(downClues[i])
+                  }
+                  // if (downTemp.current == clue) {
+                  //   return;
+                  // }
+                  // downTemp.current = clue;
+                  return (
+                    <Clue
+                      clue={clue}
+                      index={index}
+                      innerRef={isHighlighted ? downRef : null}
+                      isHighlighted={isHighlighted}
+                      isMode={mode === 'down'}
+                      key={`clue-down-${i}`}
+                      mode="down"
+                      onClick={onClick}
+                    />
+                  );
               })}
             </ClueList>
           </>

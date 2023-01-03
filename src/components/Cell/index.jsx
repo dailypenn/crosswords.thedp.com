@@ -4,7 +4,7 @@ import { Rect, Text } from 'react-konva';
 
 import { colors } from '../../css';
 
-const CELL_SIZE = 25;
+const CELL_SIZE = 40;
 
 const Cell = ({
   clueIndex,

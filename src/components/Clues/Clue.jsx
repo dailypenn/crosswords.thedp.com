@@ -26,6 +26,7 @@ const ClueContainer = styled(
   display: flex;
   padding-top: 3px;
   padding-bottom: 3px;
+  cursor: pointer;
   ${(props) => props.isHighlighted && !props.isMode && css`
     background-color: ${colors.lightBlue};
   `}
