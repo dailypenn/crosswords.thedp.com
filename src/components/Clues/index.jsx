@@ -36,6 +36,7 @@ const Title = styled.strong`
   padding-bottom: 1.5rem;
   font-size: 1.5rem;
   color: #D72E25;
+  font-family: Aeonik;
 
   ${(props) => props.one && css`
     grid-column: 1/1;

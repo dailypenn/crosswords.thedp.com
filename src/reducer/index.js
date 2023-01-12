@@ -59,7 +59,7 @@ const reducer = (state, action) => {
       const grid = _.get(save, key, _.get(puz, 'grid', []));
       const height = _.get(puz, 'header.height[0]', 1);
       const title = _.get(puz, 'title', '');
-      const width = _.get(puz, 'header.width[0]', 1);
+      const width = _.get(puz, 'header.width[0]', 1)
 
       const acrossClues = [];
       const downClues = [];

@@ -25,16 +25,16 @@ import Layout from '../components/layout';
 const Empty = styled.div``;
 // eslint-disable-next-line no-unused-vars, react/jsx-props-no-spreading
 const PuzzleContainer = styled(({ width, ...props }) => <Empty {...props} />)`
-  display: grid;
-  grid-template-columns: auto;
+  // display: grid;
+  // grid-template-columns: auto;
 
-  @media (min-width: 1200px) {
-    grid-template-columns: calc(${(props) => props.width} * ${CELL_SIZE}px + 20px) auto auto;
-  }
+  // @media (min-width: 1200px) {
+  //   grid-template-columns: calc(${(props) => props.width} * ${CELL_SIZE}px + 20px) auto auto;
+  // }
 
-  @media print {
-    grid-template-columns: auto;
-  }
+  // @media print {
+  //   grid-template-columns: auto;
+  // }
 `; // ` Mess with Github syntax highlighting
 
 const FileContainer = styled.div`
@@ -55,21 +55,21 @@ const File = styled.input``;
 const Container = styled.div`
   width: 95%;
   margin: 0 auto;
-  height: 100%;
+  height: 95%;
   outline: none;
 
-  @media (min-width: 576px) {
-    max-width: 540px;
-  }
-  @media (min-width: 768px) {
-    max-width: 720px;
-  }
-  @media (min-width: 992px) {
-    max-width: 960px;
-  }
-  @media (min-width: 1200px) {
-    max-width: 1140px;
-  }
+  // @media (min-width: 576px) {
+  //   max-width: 540px;
+  // }
+  // @media (min-width: 768px) {
+  //   max-width: 720px;
+  // }
+  // @media (min-width: 992px) {
+  //   max-width: 960px;
+  // }
+  // @media (min-width: 1200px) {
+  //   max-width: 1140px;
+  // }
 `;
 
 const Header = styled.h2`
@@ -359,6 +359,7 @@ const Crossword = () => {
     }
   }, [getCellByClue, getCoord, grid, selected.x, selected.y]);
 
+
   return (
     <Layout>
       <Container onKeyDown={onKeyDown} tabIndex={0} >
@@ -381,26 +382,30 @@ const Crossword = () => {
         )}
         {/* </> For Github syntax highlighting */}
         {grid && (
-          <>
-            <PuzzleContainer width={width}>
-              <Puzzle
-                grid={grid}
-                height={height}
-                onSelect={onSelect}
-                width={width}
-              />
-              <Clues
-                acrossClues={state.acrossClues}
-                clueIndex={state.clueIndex}
-                downClues={state.downClues}
-                height={height * CELL_SIZE}
-                mode={mode}
-                onClick={onClueClick}
-                width={width * CELL_SIZE}
-              />
-            </PuzzleContainer>
+          <div className='container-fluid' ref={containerRef}>
+            <div className='row'>
+              <div className='col-12 col-lg-6 items-center'>
+                <Puzzle
+                  grid={grid}
+                  height={height}
+                  onSelect={onSelect}
+                  width={width}
+                />
+              </div>
+              <div className='col-12 col-lg-6'>
+                <Clues
+                  acrossClues={state.acrossClues}
+                  clueIndex={state.clueIndex}
+                  downClues={state.downClues}
+                  height={height * CELL_SIZE}
+                  mode={mode}
+                  onClick={onClueClick}
+                  width={width * CELL_SIZE}
+                />
+              </div>
+            </div>
             <Keyboard onClick={onKeyboardClick} />
-          </>
+          </div>
         )}
       </Container>
     </Layout>

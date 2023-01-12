@@ -223,3 +223,18 @@ pre tt:before,
 pre tt:after {
   content: none;
 }
+
+@font-face {
+  font-family: Aeonik;
+  src: url(../fonts/Aeonik-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: Recife;
+  src: url(../fonts/RecifeDisplay-BookItalic.woff2) format('woff2');
+}
+
+.konvajs-content {
+  margin-left: auto;
+  margin-right: auto;
+}
